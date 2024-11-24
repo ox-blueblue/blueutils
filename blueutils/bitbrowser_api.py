@@ -11,7 +11,8 @@ lock = threading.Lock()  # 创建锁，暂时只对open、close、update_finger_
 
 # 新建一个窗口
 class BitBrowser:
-    def __init__(self, url, headers, id, proxy_type='', proxy_host='', proxy_port='', proxy_user='', proxy_pwd=''):
+    def __init__(self, id, url="http://127.0.0.1:54345", headers={'Content-Type': 'application/json'}, 
+                 proxy_type='', proxy_host='', proxy_port='', proxy_user='', proxy_pwd=''):
         self.url = url
         self.headers = headers
         self.id = id        
@@ -265,13 +266,11 @@ def listBrowser():
         print(id)
 
 if __name__ == '__main__':
-    b = BitBrowser(
-                url="http://127.0.0.1:54345",
-                headers={'Content-Type': 'application/json'},
-                id="a8924c465c08411790656e66accc48f5")    
+    b = BitBrowser(id="a8924c465c08411790656e66accc48f5")    
     b.open()
     context = b.get_browser_context()
     print(context)
+    b.close()
         
         
 
