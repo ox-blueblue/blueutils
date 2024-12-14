@@ -12,8 +12,7 @@ class FeishuRobot(object):
     def __init__(self, webhook: str, secret: str = None) -> None:
         self.headers = {'Content-Type': 'application/json; charset=utf-8'}
         self.webhook = webhook
-        self.secret = secret
-        self.time = str(int(time.time()))
+        self.secret = secret        
 
     # 签名校验
     def get_sign(self, timestamp, secret):
@@ -32,8 +31,9 @@ class FeishuRobot(object):
         webhook = self.webhook
         headers = {'Content-Type': 'application/json; charset=utf-8'}
         if self.secret != None:
-            data['timestamp'] = self.time
-            data['sign'] = self.get_sign(secret=self.secret, timestamp=self.time)
+            timestamp = str(int(time.time()))
+            data['timestamp'] = timestamp
+            data['sign'] = self.get_sign(secret=self.secret, timestamp=timestamp)
         #log.info(data)
         data = json.dumps(data)
         try:

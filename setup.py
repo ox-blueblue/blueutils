@@ -7,7 +7,7 @@ project_urls = {
 }
 setuptools.setup(
     name="blueutils",
-    version="0.0.4",
+    version="0.0.5",
     author="blue",
     author_email="embzhengblue@gmail.com",
     description="This is a crypto operation tool",
