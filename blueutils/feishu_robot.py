@@ -41,16 +41,12 @@ class FeishuRobot(object):
         except requests.exceptions.HTTPError as exc:
             log.error("消息发送失败， HTTP error: %d, reason: %s" %
                           (exc.response.status_code, exc.response.reason))
-            raise
         except requests.exceptions.ConnectionError:
             log.error("消息发送失败，HTTP connection error!")
-            raise
         except requests.exceptions.Timeout:
             log.error("消息发送失败，Timeout error!")
-            raise
         except requests.exceptions.RequestException:
             log.error("消息发送失败, Request Exception!")
-            raise
         else:
             result = response.json()
 
