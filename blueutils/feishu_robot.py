@@ -63,11 +63,14 @@ class FeishuRobot(object):
         :param text: 消息内容（必须是字符串，如果太长自动折叠）
         :param is_at_all: 是否艾特所有人，默认关闭；False：不艾特所有人；True：艾特所有人（默认加在文字最后面）
         """
-        log.info(text)
-        if is_at_all:
-            text = text+'<at user_id="all">所有人</at> '
-        data = {"msg_type": "text", "content": {"text": text}}        
-        self.post(data)
+        try:
+            log.info(text)
+            if is_at_all:
+                text = text+'<at user_id="all">所有人</at> '
+            data = {"msg_type": "text", "content": {"text": text}}        
+            self.post(data)
+        except Exception as e:
+            log.error(e)
 
     # 发送富文本消息
     def send_post(self, *args, title: str = None):
